@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Analyser Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Load Chart.js for visualizations -->
+
+    <style>
+        /* Adjust the chart size */
+        #sentimentChart {
+            max-width: 50%; /* Limit chart width to 50% of the container */
+            height: auto;   /* Maintain aspect ratio */
+        }
+
+        /* Style recent reviews for better readability */
+        #reviewList li {
+            margin-bottom: 1em;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Review Analyser Dashboard</h1>
+
+    <!-- Sentiment Summary Chart -->
+    <section>
+        <h2>Sentiment Summary</h2>
+        <canvas id="sentimentChart" width="300" height="150"></canvas>
+    </section>
+
+    <!-- Recent Reviews -->
+    <section>
+        <h2>Recent Reviews</h2>
+        <ul id="reviewList">
+            <!-- Review items will be inserted here -->
+        </ul>
+    </section>
+
+    <!-- Pass data to JavaScript using hidden script tags -->
+    <script type="application/json" id="sentimentData">{{ sentiment_data | tojson }}</script>
+    <script type="application/json" id="recentReviews">{{ recent_reviews | tojson }}</script>
+
+    <!-- Link the external JavaScript file -->
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
